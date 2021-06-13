@@ -1,0 +1,10 @@
+00:03:37.914 INFO  Gojae.BookRecord.controller.BookApiController - TABLE books에 책 정보[id:9, title:물은 무리수, author:최낙타, publisher:민음사]가 생성되었습니다.(생성시점 : 2021-06-13T00:03:37.815780)
+00:04:35.720 INFO  Gojae.BookRecord.controller.BookApiController - TABLE books의 책정보[id:9, title:물은 무리수, author:최낙타, publisher:민음사]가
+ 책 정보[id:9, title:물은 무리수, author:최낙타, publisher:민음사]로 2021-06-13T00:03:37.815780에 수정되었습니다.
+00:05:17.635 INFO  Gojae.BookRecord.controller.BookApiController - TABLE books의 책정보[id:9, title:물은 무리수, author:최낙타, publisher:민음사]가
+ 책 정보[id:9, title:물은 무리수, author:최낙타, publisher:민음사]로 2021-06-13T00:03:37.815780에 수정되었습니다.
+00:05:54.983 INFO  Gojae.BookRecord.controller.BookApiController - TABLE books의 책정보[id:9, title:물은 무리수, author:최낙타, publisher:민음사]가
+ 책 정보[id:9, title:물은 바보, author:최낙타, publisher:민음사]로 2021-06-13T00:05:54.902850에 수정되었습니다.
+00:06:54.179 INFO  Gojae.BookRecord.controller.BookApiController - TABLE books의 책정보[id:9, title:물은 바보, author:최낙타, publisher:민음사]가
+ 책 정보[id:9, title:물은 바보 , author:최낙타, publisher:민음사]로 2021-06-13T00:06:54.108185에 수정되었습니다.
+00:08:51.351 INFO  Gojae.BookRecord.controller.BookApiController - TABLE books의 책정보[id:9, title:물은 바보 , author:최낙타, publisher:민음사]가[id:9, title:물은 천재, author:최낙타, publisher:민음사]로 2021-06-13T00:08:51.203981에 수정되었습니다.

@@ -1,0 +1,4 @@
+23:01:42.290 INFO  Gojae.BookRecord.controller.BookApiController - 5 바깥은 good
+23:29:33.417 INFO  Gojae.BookRecord.controller.BookApiController - TABLE books에 id:6, title:바깥은 hot, author:후루, publisher:wow사로 2021-06-12T23:29:33.317841에 데이터 생성되었습니다.
+23:32:25.038 INFO  Gojae.BookRecord.controller.BookApiController - TABLE books에 id:7, title:바깥은 물, author:최낙타, publisher:민음사로 2021-06-12T23:32:24.937285에 데이터가 생성되었습니다.
+23:38:23.483 INFO  Gojae.BookRecord.controller.BookApiController - TABLE books에 책 정보(id:8, title:물은 흐른다, author:최낙타, publisher:민음사)가 2021-06-12T23:38:23.371720에 생성되었습니다.
