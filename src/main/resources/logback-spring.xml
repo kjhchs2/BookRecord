@@ -21,8 +21,8 @@
         </layout>
     </appender>
 
-    <!-- controller에서 발생하는 INFO 이상 log만 따로 파일에 저장 -->
-    <logger name="Gojae.BookRecord.controller" level="INFO">
+    <!-- service에서 발생하는 INFO 이상 log만 따로 파일에 저장 -->
+    <logger name="Gojae.BookRecord.service" level="INFO">
         <appender-ref ref="FILE"/>
     </logger>>
 
