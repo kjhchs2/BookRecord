@@ -1,6 +1,5 @@
 package Gojae.BookRecord.service;
 
-import Gojae.BookRecord.domain.Content;
 import Gojae.BookRecord.domain.Member;
 import Gojae.BookRecord.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;

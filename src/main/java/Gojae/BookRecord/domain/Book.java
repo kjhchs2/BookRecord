@@ -1,6 +1,5 @@
 package Gojae.BookRecord.domain;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
