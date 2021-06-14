@@ -117,7 +117,7 @@ public class MemberApiControllerTest {
         String[] member1 = {"고재헌", "gojaeheon@woowahan.com"};
         CreateMemberRequest request1 = makeRequest(member1);
         memberApiController.saveMember(request1);
-        // when : 기존의 사용자와 이름은 다르고 메일만 같게 가입할 떄
+        // when : 기존의 사용자와 이름은 다르고 메일만 같게 가입할 때
         String[] member2 = {"곱슬곱슬", "gojaeheon@woowahan.com"};
         CreateMemberRequest request2 = makeRequest(member2);
         // then : 중복 메일 확인 후 Bad Request 처리 및 error message 확인
@@ -136,7 +136,7 @@ public class MemberApiControllerTest {
         String[] member = {"고재헌", "gojaeheon@woowahan.com"};
         CreateMemberRequest request = makeRequest(member);
         ResponseMemberDto response = memberApiController.saveMember(request);
-        // when : 사용자 수정 정보를 보냈을 떄,
+        // when : 사용자 수정 정보를 보냈을 때
         UpdateMemberRequest updateRequest = new UpdateMemberRequest();
         updateRequest.setName("고재신");
         Long id = response.getId();

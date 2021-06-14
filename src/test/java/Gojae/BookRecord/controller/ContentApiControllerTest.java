@@ -118,7 +118,7 @@ public class ContentApiControllerTest {
         String[] content = {"1", "1", "100", "발췌 내용"};
         CreateContentRequest request = makeRequest(content);
         ResponseContentDto response = contentApiController.saveContent(request);
-        // when : 발췌문 수정 정보를 보냈을 떄,
+        // when : 발췌문 수정 정보를 보냈을 때
         String[] updateContent = {"1", "1", "150", "발췌 내용 수정"};
         CreateContentRequest updateRequest = makeRequest(updateContent);
         Long id = response.getId();
@@ -191,7 +191,6 @@ public class ContentApiControllerTest {
         PagingContentRequest pagingRequest = new PagingContentRequest();
         pagingRequest.setContentsPerPage(3);
         pagingRequest.setPage(0);
-
         // then : Ok 처리 및 sorted=true 여부 확인
         mockMvc.perform(get("/contents")
                 .content(objectMapper.writeValueAsString(pagingRequest))

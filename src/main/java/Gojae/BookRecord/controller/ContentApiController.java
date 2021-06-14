@@ -17,7 +17,6 @@ import javax.validation.Valid;
 import java.time.LocalDateTime;
 
 @RestController
-@Slf4j
 @RequiredArgsConstructor
 public class ContentApiController {
 
@@ -47,10 +46,6 @@ public class ContentApiController {
             content.setExtractedPage(request.getExtractedPage());
             content.setExtractedContent(request.getExtractedContent());
             Content result = contentService.join(content);
-            // Book 정보 생성 logback
-            log.info("TABLE contents에 발췌문 정보[id:{}, member_id:{}, book_id:{}, extracted_page:{}, extracted_content:{}]가 생성되었습니다. (생성시점: {})",
-                     result.getId(), result.getMemberId(), result.getBookId(), result.getExtractedPage(),
-                     result.getExtractedContent(), result.getCreatedDate());
             return new ResponseContentDto(result.getId(), result.getMemberId(),
                                           result.getBookId(), result.getExtractedPage(),
                                           result.getExtractedContent(),
@@ -81,14 +76,8 @@ public class ContentApiController {
             if (oldExtractedPage.equals(request.getExtractedPage()) && oldExtractedContent.equals(request.getExtractedContent())) {
                 throw new IllegalStateException("수정할 발췌문 정보가 없습니다.");
             } else {
-                contentService.extractedPageChange(id, request.getExtractedPage());
-                contentService.extractedContentChange(id, request.getExtractedContent());
+                contentService.contentInfoChange(id, request.getExtractedPage(), request.getExtractedContent());
                 Content findContent = contentService.findContent(id).get();
-                // 발췌문 정보 수정 logback
-                log.info("TABLE contents의 id:{}의 발췌문 정보[extracted_page:{}, extracted_contents:{}]가 " +
-                                "[extracted_page:{}, extracted_contents:{}]로 {}에 수정되었습니다. (생성시점: {})",
-                        id, oldExtractedPage, oldExtractedContent, findContent.getExtractedPage(),
-                        findContent.getExtractedContent(), findContent.getModifiedDate(), findContent.getCreatedDate());
                 return new ResponseContentDto(findContent.getId(), findContent.getMemberId(),
                         findContent.getBookId(), findContent.getExtractedPage(),
                         findContent.getExtractedContent(),

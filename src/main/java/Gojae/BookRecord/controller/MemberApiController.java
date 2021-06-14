@@ -17,7 +17,6 @@ import javax.validation.Valid;
 import java.time.LocalDateTime;
 
 @RestController
-@Slf4j
 @RequiredArgsConstructor
 public class MemberApiController {
 
@@ -43,9 +42,6 @@ public class MemberApiController {
             member.setName(request.getName());
             member.setEmail(request.getEmail());
             Member result = memberService.join(member);
-            // member 정보 생성 logback
-            log.info("TABLE members에 사용자 정보[id:{}, name:{}, email:{}]가 생성되었습니다. (생성시점: {})",
-                    result.getId(), result.getName(), result.getEmail(), result.getCreatedDate());
             return new ResponseMemberDto(result.getId(), result.getName(), result.getEmail(), result.getCreatedDate(), result.getModifiedDate());
         } catch (Exception e){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
@@ -53,7 +49,7 @@ public class MemberApiController {
     }
     // 등록 요청 class
     @Data
-    public static class CreateMemberRequest extends UpdateMemberRequest {
+    public static class CreateMemberRequest {
         private String name;
         private String email;
     }
@@ -72,11 +68,6 @@ public class MemberApiController {
             }
             memberService.nameChange(id, request.getName());
             Member findMember = memberService.findMember(id).get();
-            // 사용자 정보 수정 logback
-            log.info("TABLE members의 id:{}의 사용자 정보[name:{}]가 " +
-                            "[name:{}]로 {}에 수정되었습니다. (생성시점: {})",
-                    id, oldName, findMember.getName(),
-                    findMember.getModifiedDate(), findMember.getCreatedDate());
             return new ResponseMemberDto(findMember.getId(), findMember.getName(), findMember.getEmail(),
                                          findMember.getCreatedDate(), findMember.getModifiedDate());
         } catch (Exception e){

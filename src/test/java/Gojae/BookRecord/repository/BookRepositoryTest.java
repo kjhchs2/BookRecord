@@ -41,16 +41,13 @@ public class BookRepositoryTest {
         book1.setAuthor("정재승");
         book1.setPublisher("어크로스");
         bookRepository.save(book1);
-
         Book book2 = new Book();
         book2.setTitle("과학콘서트");
         book2.setAuthor("고재헌");
         book2.setPublisher("민음사");
         bookRepository.save(book2);
-
         // when
         List<Book> result = bookRepository.findAllByTitle("과학콘서트");
-
         // then
         assertThat(result.size()).isEqualTo(2);
     }

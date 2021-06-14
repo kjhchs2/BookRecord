@@ -147,7 +147,7 @@ public class BookApiControllerTest {
         String[] book = {"바깥은 겨울", "김애란", "문학동네"};
         CreateBookRequest request = makeRequest(book);
         ResponseBookDto response = bookApiController.saveBook(request);
-        // when : 책 수정 정보를 보냈을 떄
+        // when : 책 수정 정보를 보냈을 때
         String[] updateBook = {"바깥은 여름","김애란", "문학동네"};
         CreateBookRequest updateRequest = makeRequest(updateBook);
         Long id = response.getId();
@@ -220,7 +220,6 @@ public class BookApiControllerTest {
         PagingBookRequest pagingRequest = new PagingBookRequest();
         pagingRequest.setBooksPerPage(3);
         pagingRequest.setPage(0);
-
         // then : Ok 처리 및 sorted=true 여부 확인
         mockMvc.perform(get("/books")
                 .content(objectMapper.writeValueAsString(pagingRequest))

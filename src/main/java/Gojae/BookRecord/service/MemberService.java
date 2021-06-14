@@ -4,6 +4,7 @@ import Gojae.BookRecord.domain.Content;
 import Gojae.BookRecord.domain.Member;
 import Gojae.BookRecord.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class MemberService {
 
@@ -22,7 +24,10 @@ public class MemberService {
     public Member join(Member member){
         try {
             validateEmail(member);
-            memberRepository.save(member);
+            Member result = memberRepository.save(member);
+            // member 정보 생성 logback
+            log.info("TABLE members에 사용자 정보[id:{}, name:{}, email:{}]가 생성되었습니다. (생성시점: {})",
+                    result.getId(), result.getName(), result.getEmail(), result.getCreatedDate());
             return member;
         } catch (Exception e){
             throw new IllegalStateException(e.getMessage());
@@ -49,8 +54,13 @@ public class MemberService {
     @Transactional
     public void nameChange(Long id, String afterName) {
         try {
-            Member member = memberRepository.findById(id).get();
-            member.setName(afterName);
+            Member findMember = memberRepository.findById(id).get();
+            findMember.setName(afterName);
+            // 사용자 정보 수정 logback
+            log.info("TABLE members의 id:{}의 사용자 정보가 [name:{}, email:{}] " +
+                     "로 {}에 수정되었습니다. (생성시점: {})",
+                     id, findMember.getName(), findMember.getEmail(),
+                     findMember.getModifiedDate(), findMember.getCreatedDate());
         } catch (Exception e){
             throw new IllegalStateException(e.getMessage());
         }

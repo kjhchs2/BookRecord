@@ -20,7 +20,6 @@ import java.time.LocalDateTime;
 
 @RestController
 @RequiredArgsConstructor
-@Slf4j
 public class BookApiController {
 
     private final BookService bookService;
@@ -47,9 +46,6 @@ public class BookApiController {
             book.setAuthor(request.getAuthor());
             book.setPublisher(request.getPublisher());
             Book result = bookService.join(book);
-            // book 정보 생성 logback
-            log.info("TABLE books에 책 정보[id:{}, title:{}, author:{}, publisher:{}]가 생성되었습니다. (생성시점: {})",
-                     result.getId(), result.getTitle(), result.getAuthor(), result.getPublisher(), result.getCreatedDate());
             return new ResponseBookDto(result.getId(), result.getTitle(),
                                        result.getAuthor(), result.getPublisher(),
                                        result.getCreatedDate(), result.getModifiedDate());
@@ -79,15 +75,8 @@ public class BookApiController {
             if (oldTitle.equals(request.getTitle()) && oldAuthor.equals(request.getAuthor()) && oldPublisher.equals(request.getPublisher())) {
                 throw new IllegalStateException("수정할 책 정보가 없습니다.");
             } else {
-                bookService.titleChange(id, request.getTitle());
-                bookService.authorChange(id, request.getAuthor());
-                bookService.publisherChange(id, request.getPublisher());
+                bookService.bookInfoChange(id, request.getTitle(), request.getAuthor(), request.getPublisher());
                 Book findBook = bookService.findBook(id).get();
-                // 책 정보 수보 logback
-                log.info("TABLE books의 id:{}의 책 정보[title:{}, author:{}, publisher:{}]가 " +
-                                "[title:{}, author:{}, publisher:{}]로 {}에 수정되었습니다. (생성시점: {})",
-                         id, oldTitle, oldAuthor, oldPublisher, findBook.getTitle(), findBook.getAuthor(),
-                         findBook.getPublisher(), findBook.getModifiedDate(), findBook.getCreatedDate());
                 return new ResponseBookDto(findBook.getId(), findBook.getTitle(),
                                            findBook.getAuthor(), findBook.getPublisher(),
                                            findBook.getCreatedDate(), findBook.getModifiedDate());

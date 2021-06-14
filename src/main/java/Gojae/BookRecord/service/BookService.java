@@ -3,6 +3,7 @@ package Gojae.BookRecord.service;
 import Gojae.BookRecord.domain.Book;
 import Gojae.BookRecord.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class BookService {
 
@@ -23,7 +25,10 @@ public class BookService {
     public Book join(Book book){
         try {
             validateBook(book);
-            bookRepository.save(book);
+            Book result = bookRepository.save(book);
+            // book 정보 생성 logback
+            log.info("TABLE books에 책 정보[id:{}, title:{}, author:{}, publisher:{}]가 생성되었습니다. (생성시점: {})",
+                    result.getId(), result.getTitle(), result.getAuthor(), result.getPublisher(), result.getCreatedDate());
             return book;
         } catch (Exception e){
             throw new IllegalStateException(e.getMessage());
@@ -88,7 +93,25 @@ public class BookService {
         }
     }
 
-    // 6. paging을 위한 책 전체 찾기
+    // 6. 책 정보(제목, 저자, 출판사) 변경
+    @Transactional
+    public void bookInfoChange(Long id, String title, String author, String publisher) {
+        try{
+            titleChange(id, title);
+            authorChange(id, author);
+            publisherChange(id, publisher);
+            Book findBook = bookRepository.findById(id).get();
+            // 책 정보 수보 logback
+            log.info("TABLE books의 id:{}의 책 정보가 [title:{}, author:{}, publisher:{}] " +
+                     "로 {}에 수정되었습니다. (생성시점: {})",
+                     id, title, author, publisher, findBook.getModifiedDate(),
+                     findBook.getCreatedDate());
+        } catch (Exception e){
+            throw new IllegalStateException(e.getMessage());
+        }
+    }
+
+    // 7. paging을 위한 책 전체 찾기
     public Page<Book> findAll(Pageable pageable){
         try {
             return bookRepository.findAll(pageable);
