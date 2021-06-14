@@ -1,13 +1,17 @@
 package Gojae.BookRecord.service;
 
+import Gojae.BookRecord.domain.Content;
 import Gojae.BookRecord.domain.Member;
 import Gojae.BookRecord.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class MemberService {
 
@@ -32,7 +36,16 @@ public class MemberService {
                 });
     }
 
-    // 2. 사용자 이름 변경
+    // 2. id(PK)로 사용자 찾기
+    public Optional<Member> findMember(Long id) {
+        try {
+            return memberRepository.findById(id);
+        } catch (Exception e){
+            throw new IllegalStateException(e.getMessage());
+        }
+    }
+
+    // 3. 사용자 이름 변경
     @Transactional
     public void nameChange(Long id, String afterName) {
         try {
@@ -44,5 +57,13 @@ public class MemberService {
     }
 
 
+    // 4. paging을 위한 책 전체 찾기
+    public Page<Member> findAll(Pageable pageable){
+        try {
+            return memberRepository.findAll(pageable);
+        } catch (Exception e){
+            throw new IllegalStateException(e.getMessage());
+        }
+    }
 
 }

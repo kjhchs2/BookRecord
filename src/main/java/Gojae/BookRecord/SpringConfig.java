@@ -3,6 +3,7 @@ import Gojae.BookRecord.repository.*;
 import Gojae.BookRecord.service.BookService;
 import Gojae.BookRecord.service.ContentService;
 import Gojae.BookRecord.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,15 +12,12 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
 
-//    private final DataSource dataSource;
     private final MemberRepository memberRepository;
     private final BookRepository bookRepository;
     private final ContentRepository contentRepository;
 
-
     @Autowired
-    public SpringConfig(DataSource dataSource, MemberRepository memberRepository, BookRepository bookRepository, ContentRepository contentRepository) {
-//        this.dataSource = dataSource;
+    public SpringConfig(MemberRepository memberRepository, BookRepository bookRepository, ContentRepository contentRepository) {
         this.memberRepository = memberRepository;
         this.bookRepository = bookRepository;
         this.contentRepository = contentRepository;

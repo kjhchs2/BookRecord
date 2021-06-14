@@ -20,9 +20,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'mysql:mysql-connector-java'
 	compileOnly 'org.projectlombok:lombok'
-//	testCompile 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'		//이거 꼭 필요 ;
-//	testAnnotationProcessor 'org.projectlombok:lombok'
+	testCompile 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
 	implementation 'org.flywaydb:flyway-core'
 }
 
