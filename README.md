@@ -15,7 +15,7 @@
 ## 추가 설명
 ### <공통>
 ![image](https://user-images.githubusercontent.com/72333462/121840903-39f1f700-cd18-11eb-8537-04709ea1db77.png)
-###### (출처 : https://dahye-jeong.gitbook.io/spring/spring/2020-04-12-layer)
+####### (출처 : https://dahye-jeong.gitbook.io/spring/spring/2020-04-12-layer)
 
 1. 위의 그림과 같이 구현하기 위해 노력했습니다.
 2. 상위 폴더에 `logback-yyyy-MM-dd.i.log`파일에 **데이터 생성, 수정**에 대한 info log가 100MB단위로 저장되어 나갑니다.
