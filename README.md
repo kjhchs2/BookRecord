@@ -7,7 +7,7 @@
 <br> `$ docker-compose up -d`
 4. 서버 빌드 및 실행을 시켜줍니다. (빌드 시 Test 진행)
 <br> `$ ./gradlew build`
-<br> `$ ./java -jar ./build/libs/BookRecord-0.0.1-SNAPSHOT.jar`
+<br> `$ java -jar ./build/libs/BookRecord-0.0.1-SNAPSHOT.jar`
 5. 빌드 및 실행이 잘 안될 경우, 아래와 같이 입력 후 4번 내용을 다시 입력합니다.
 <br> `$ ./gradlew clean`
 <br>
